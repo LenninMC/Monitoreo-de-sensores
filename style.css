@@ -1,0 +1,731 @@
+/* ========================================
+   ESTILOS GENERALES
+   ======================================== */
+
+/* Quita márgenes y padding por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo del cuerpo de la página */
+body {
+    font-family: 'Inter', sans-serif;  /* Fuente moderna */
+    min-height: 100vh;                  /* Ocupa todo el alto */
+    display: flex;                       /* Centra el contenido */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f7 100%); /* Fondo degradado */
+    position: relative;
+}
+
+/* Fondo con círculos decorativos */
+.background {
+    position: fixed;                     /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(71, 118, 230, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 30%);
+    pointer-events: none;                /* No interfiere con clics */
+    z-index: 0;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    max-width: 1300px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Oculta elementos (para cambiar entre login y dashboard) */
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   ESTILOS DEL LOGIN
+   ======================================== */
+
+/* Tarjeta blanca del login */
+.login-card {
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px -12px rgba(0, 20, 30, 0.2);
+    width: 100%;
+    max-width: 440px;
+    overflow: hidden;
+    animation: slideUp 0.5s ease;        /* Animación al aparecer */
+}
+
+/* Animación de entrada */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabecera del login */
+.login-header {
+    padding: 40px 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f8fcff, #f0f7ff);
+}
+
+/* Icono grande circular */
+.brand-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #4776e6, #8e54e9);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 20px -5px rgba(71, 118, 230, 0.4);
+}
+
+.brand-icon i {
+    font-size: 40px;
+    color: white;
+}
+
+/* Títulos */
+.login-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Cuerpo del login (formulario) */
+.login-body {
+    padding: 20px 40px;
+}
+
+/* Cada grupo de input (usuario/contraseña) */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.input-group label i {
+    color: #4776e6;
+}
+
+/* Campos de texto */
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4776e6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(71, 118, 230, 0.1);
+}
+
+/* Botón principal */
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #4776e6, #8e54e9);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(71, 118, 230, 0.5);
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 16px;
+    text-align: center;
+}
+
+/* Pie del login */
+.login-footer {
+    padding: 20px 40px 40px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 14px;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* ========================================
+   ESTILOS DEL DASHBOARD
+   ======================================== */
+
+.dashboard {
+    width: 100%;
+    animation: slideUp 0.5s ease;
+}
+
+/* Barra superior */
+.dashboard-header {
+    background: white;
+    border-radius: 24px;
+    padding: 20px 30px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo y título */
+.header-left .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo i {
+    font-size: 32px;
+    color: #4776e6;
+}
+
+.logo h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+/* Etiqueta "v2.0" */
+.badge {
+    background: #e6f0ff;
+    color: #4776e6;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 30px;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+/* Hora */
+.timestamp {
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Parte derecha del header */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Botón secundario (Simular valores) */
+.btn-secondary {
+    padding: 12px 24px;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 40px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* Perfil de usuario */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #f8fafc;
+    border-radius: 40px;
+    border: 1px solid #e2e8f0;
+}
+
+.user-profile i {
+    font-size: 20px;
+    color: #4776e6;
+}
+
+.user-profile span {
+    color: #475569;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* ========================================
+   TARJETAS DE ESTADÍSTICAS
+   ======================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+}
+
+/* Iconos de estadísticas */
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon.blue {
+    background: #e6f0ff;
+    color: #4776e6;
+}
+
+.stat-icon.green {
+    background: #e6f7e6;
+    color: #10b981;
+}
+
+.stat-icon.purple {
+    background: #f3e8ff;
+    color: #8b5cf6;
+}
+
+.stat-icon i {
+    font-size: 24px;
+}
+
+/* Texto de estadísticas */
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    color: #1e293b;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.stat-value.success {
+    color: #10b981;
+}
+
+/* ========================================
+   TARJETAS DE SENSORES
+   ======================================== */
+
+.sensors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+/* Cada tarjeta de sensor */
+.sensor-card {
+    background: white;
+    border-radius: 32px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f6;
+    transition: all 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+.sensor-card:hover {
+    box-shadow: 0 16px 32px rgba(71, 118, 230, 0.1);
+    border-color: #d0e0ff;
+}
+
+/* Cabecera del sensor */
+.sensor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sensor-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Icono del sensor */
+.sensor-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sensor-icon.blue-bg {
+    background: #e6f0ff;
+    color: #4776e6;
+}
+
+.sensor-icon.orange-bg {
+    background: #fff1e6;
+    color: #f97316;
+}
+
+.sensor-icon i {
+    font-size: 28px;
+}
+
+.sensor-title h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+/* ID del sensor (código) */
+.sensor-id {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* ========================================
+   LEDS (INDICADORES LUMINOSOS)
+   ======================================== */
+
+.led-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.led {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e2e8f0;  /* Color apagado por defecto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+/* Parte interior del LED (más brillante) */
+.led-core {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    transition: all 0.3s;
+}
+
+/* LED rojo (encendido) */
+.led.red {
+    background: #fee2e2;
+}
+.led.red .led-core {
+    background: #ef4444;
+    box-shadow: 0 0 20px #ef4444;  /* Efecto de brillo */
+}
+
+/* LED verde */
+.led.green {
+    background: #e6f7e6;
+}
+.led.green .led-core {
+    background: #10b981;
+    box-shadow: 0 0 20px #10b981;
+}
+
+/* LED amarillo */
+.led.yellow {
+    background: #fef3e2;
+}
+.led.yellow .led-core {
+    background: #f59e0b;
+    box-shadow: 0 0 20px #f59e0b;
+}
+
+/* ========================================
+   VALORES NUMÉRICOS GRANDES
+   ======================================== */
+
+.sensor-value {
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.value-number {
+    font-size: 64px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.value-unit {
+    font-size: 24px;
+    color: #94a3b8;
+    margin-left: 5px;
+    font-weight: 400;
+}
+
+/* ========================================
+   BARRA DE PROGRESO
+   ======================================== */
+
+.progress-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.3s;  /* Animación al cambiar */
+}
+
+/* Color de la barra de humedad */
+#humedad-progress {
+    background: linear-gradient(90deg, #4776e6, #8e54e9);
+}
+
+/* Color de la barra de temperatura */
+#temp-progress {
+    background: linear-gradient(90deg, #f97316, #fbbf24);
+}
+
+/* ========================================
+   CONTROLES DESLIZANTES (SLIDERS)
+   ======================================== */
+
+.slider-container {
+    margin: 20px 0;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    outline: none;
+    -webkit-appearance: none;  /* Quita estilos por defecto */
+    margin-bottom: 10px;
+}
+
+/* Slider de humedad (azul) */
+.slider.blue-slider {
+    background: linear-gradient(90deg, #e6f0ff, #4776e6);
+}
+
+/* Slider de temperatura (naranja) */
+.slider.orange-slider {
+    background: linear-gradient(90deg, #fff1e6, #f97316);
+}
+
+/* La bolita que se desliza */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 2px solid #4776e6;
+    transition: all 0.1s;
+}
+
+/* Borde naranja para el slider de temperatura */
+.slider.orange-slider::-webkit-slider-thumb {
+    border-color: #f97316;
+}
+
+/* Efecto al pasar el mouse sobre la bolita */
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+/* Etiquetas debajo del slider */
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* ========================================
+   ETIQUETAS DE UMBRALES (BADGES)
+   ======================================== */
+
+.threshold-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Badge rojo */
+.red-badge {
+    color: #ef4444;
+    background: #fee2e2;
+}
+
+/* Badge amarillo */
+.yellow-badge {
+    color: #f59e0b;
+    background: #fef3e2;
+}
+
+/* Badge verde */
+.green-badge {
+    color: #10b981;
+    background: #e6f7e6;
+}
+
+/* Punto de color dentro del badge */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.red-dot {
+    background: #ef4444;
+    box-shadow: 0 0 8px #ef4444;
+}
+
+.yellow-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+}
+
+.green-dot {
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+}
+
+/* ========================================
+   PIE DE PÁGINA
+   ======================================== */
+
+.dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    color: #94a3b8;
+    font-size: 13px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 20px;
+}
+
+.footer-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ========================================
+   DISEÑO PARA PANTALLAS PEQUEÑAS
+   ======================================== */
+@media (max-width: 600px) {
+    .sensors-grid {
+        grid-template-columns: 1fr;  /* Una sola columna */
+    }
+    
+    .value-number {
+        font-size: 48px;  /* Números más pequeños */
+    }
+    
+    .threshold-badges {
+        flex-direction: column;  /* Etiquetas en vertical */
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+        align-items: start;
+    }
+}
