@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSense | Monitor de Sensores</title>
+    
+    <!-- Fuentes e iconos (de internet) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Nuestro archivo de estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fondo decorativo con círculos suaves -->
+    <div class="background"></div>
+    
+    <!-- ======================================== -->
+    <!-- PANTALLA DE LOGIN                        -->
+    <!-- ======================================== -->
+    <div id="login-container" class="container">
+        <div class="login-card">
+            <!-- Cabecera con icono y título -->
+            <div class="login-header">
+                <div class="brand-icon">
+                    <i class="fas fa-chart-line"></i> <!-- Icono de gráfico -->
+                </div>
+                <h1>SmartSense</h1>
+                <p>Panel de monitoreo de sensores</p>
+            </div>
+            
+            <!-- Formulario de inicio de sesión -->
+            <div class="login-body">
+                <form id="login-form">
+                    <!-- Campo de usuario -->
+                    <div class="input-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i> Usuario
+                        </label>
+                        <input type="text" id="username" placeholder="Ingresa tu usuario">
+                    </div>
+                    
+                    <!-- Campo de contraseña -->
+                    <div class="input-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Contraseña
+                        </label>
+                        <input type="password" id="password" placeholder="Ingresa tu contraseña">
+                    </div>
+                    
+                    <!-- Botón para enviar el formulario -->
+                    <button type="submit" class="btn-primary">
+                        <span>Iniciar sesión</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <!-- Mensaje de error (se muestra si la contraseña es incorrecta) -->
+                    <p id="login-error" class="error-message"></p>
+                </form>
+            </div>
+            
+            <!-- Pie con credenciales de ejemplo -->
+            <div class="login-footer">
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- DASHBOARD PRINCIPAL (después del login)  -->
+    <!-- ======================================== -->
+    <div id="main-container" class="container hidden">
+        <div class="dashboard">
+            <!-- Barra superior del dashboard -->
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <div class="logo">
+                        <i class="fas fa-microchip"></i> <!-- Icono de microchip -->
+                        <div>
+                            <h2>SmartSense <span class="badge">v2.0</span></h2>
+                            <p class="timestamp" id="timestamp">Actualizado hace un momento</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <!-- Botón para generar valores aleatorios -->
+                    <button id="random-simulate" class="btn-secondary">
+                        <i class="fas fa-dice"></i> Simular valores
+                    </button>
+                    <!-- Nombre del usuario que inició sesión -->
+                    <div class="user-profile">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Lennin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjetas de estadísticas rápidas -->
+            <div class="stats-grid">
+                <!-- Sensores activos -->
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Sensores activos</span>
+                        <span class="stat-value">2</span>
+                    </div>
+                </div>
+                <!-- Estado del sistema -->
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Estado del sistema</span>
+                        <span class="stat-value success">Operativo</span>
+                    </div>
+                </div>
+                <!-- Hora de la última lectura -->
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Última lectura</span>
+                        <span class="stat-value" id="time-display">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================== -->
+            <!-- TARJETAS DE LOS SENSORES                 -->
+            <!-- ======================================== -->
+            <div class="sensors-grid">
+                <!-- SENSOR DE HUMEDAD -->
+                <div class="sensor-card">
+                    <!-- Cabecera del sensor -->
+                    <div class="sensor-header">
+                        <div class="sensor-title">
+                            <div class="sensor-icon blue-bg">
+                                <i class="fas fa-tint"></i> <!-- Icono de gota -->
+                            </div>
+                            <div>
+                                <h3>Sensor de Humedad</h3>
+                                <span class="sensor-id">#HMD-001</span>
+                            </div>
+                        </div>
+                        <!-- LED indicador -->
+                        <div class="led-wrapper">
+                            <div class="led" id="led-humedad">
+                                <div class="led-core"></div> <!-- Parte interior del LED -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Valor numérico grande -->
+                    <div class="sensor-value">
+                        <span class="value-number" id="humedad-valor">50</span>
+                        <span class="value-unit">% RH</span>
+                    </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="humedad-progress" style="width: 50%;"></div>
+                    </div>
+
+                    <!-- Control deslizante (slider) -->
+                    <div class="slider-container">
+                        <input type="range" id="humedad-slider" min="0" max="100" value="50" class="slider blue-slider">
+                        <div class="slider-labels">
+                            <span>0%</span> <span>25%</span> <span>50%</span> <span>75%</span> <span>100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Etiquetas de umbrales (cuándo cambia de color) -->
+                    <div class="threshold-badges">
+                        <span class="badge red-badge">
+                            <span class="dot red-dot"></span> Crítico ≤8%
+                        </span>
+                        <span class="badge yellow-badge">
+                            <span class="dot yellow-dot"></span> Alerta 9-20%
+                        </span>
+                        <span class="badge green-badge">
+                            <span class="dot green-dot"></span> Normal >20%
+                        </span>
+                    </div>
+                </div>
+
+                <!-- SENSOR DE TEMPERATURA -->
+                <div class="sensor-card">
+                    <!-- Cabecera del sensor -->
+                    <div class="sensor-header">
+                        <div class="sensor-title">
+                            <div class="sensor-icon orange-bg">
+                                <i class="fas fa-temperature-high"></i> <!-- Icono de termómetro -->
+                            </div>
+                            <div>
+                                <h3>Sensor de Temperatura</h3>
+                                <span class="sensor-id">#TMP-002</span>
+                            </div>
+                        </div>
+                        <!-- LED indicador -->
+                        <div class="led-wrapper">
+                            <div class="led" id="led-temp">
+                                <div class="led-core"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Valor numérico grande -->
+                    <div class="sensor-value">
+                        <span class="value-number" id="temp-valor">25</span>
+                        <span class="value-unit">°C</span>
+                    </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="temp-progress" style="width: 50%;"></div>
+                    </div>
+
+                    <!-- Control deslizante (slider) con pasos de 0.5 -->
+                    <div class="slider-container">
+                        <input type="range" id="temp-slider" min="0" max="50" value="25" step="0.5" class="slider orange-slider">
+                        <div class="slider-labels">
+                            <span>0°C</span> <span>12°C</span> <span>25°C</span> <span>37°C</span> <span>50°C</span>
+                        </div>
+                    </div>
+
+                    <!-- Etiquetas de umbrales -->
+                    <div class="threshold-badges">
+                        <span class="badge red-badge">
+                            <span class="dot red-dot"></span> Calor ≥30°C
+                        </span>
+                        <span class="badge yellow-badge">
+                            <span class="dot yellow-dot"></span> Frío ≤10°C
+                        </span>
+                        <span class="badge green-badge">
+                            <span class="dot green-dot"></span> Normal 11-29°C
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pie de página -->
+            <div class="dashboard-footer">
+                <p><i class="far fa-copyright"></i> 2026 SmartSense - Todos los derechos reservados</p>
+                <div class="footer-status">
+                    <i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i>
+                    <span>Sistema en línea - Datos simulados</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nuestro archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
