@@ -3,7 +3,7 @@
 // ========================================
 
 // Credenciales válidas para iniciar sesión
-const VALID_USERNAME = "admin";
+const VALID_USERNAME = "Lennin";
 const VALID_PASSWORD = "1234";
 
 // ========================================
